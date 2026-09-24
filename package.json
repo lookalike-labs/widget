@@ -1,0 +1,106 @@
+{
+  "name": "@lookalike/widget",
+  "version": "3.0.0",
+  "description": "Embed Lookalike text, voice, and video conversations with JavaScript, Web Components, or React.",
+  "license": "MIT",
+  "homepage": "https://lookalike.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lookalike-labs/widget.git"
+  },
+  "bugs": "https://github.com/lookalike-labs/widget/issues",
+  "keywords": [
+    "lookalike",
+    "digital-human",
+    "avatar",
+    "chat-widget",
+    "embed",
+    "ai"
+  ],
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "unpkg": "./dist/loader.global.js",
+  "jsdelivr": "./dist/loader.global.js",
+  "sideEffects": [
+    "./src/element.ts",
+    "./src/index.ts",
+    "./dist/index.js",
+    "./dist/index.cjs",
+    "./dist/loader.global.js",
+    "./dist/element*.js",
+    "./dist/element*.cjs"
+  ],
+  "files": [
+    "dist",
+    "CHANGELOG.md"
+  ],
+  "exports": {
+    ".": {
+      "import": { "types": "./dist/index.d.ts", "default": "./dist/index.js" },
+      "require": { "types": "./dist/index.d.cts", "default": "./dist/index.cjs" }
+    },
+    "./element": {
+      "import": { "types": "./dist/element.d.ts", "default": "./dist/element.js" },
+      "require": { "types": "./dist/element.d.cts", "default": "./dist/element.cjs" }
+    },
+    "./protocol": {
+      "import": { "types": "./dist/protocol.d.ts", "default": "./dist/protocol.js" },
+      "require": { "types": "./dist/protocol.d.cts", "default": "./dist/protocol.cjs" }
+    },
+    "./tools": {
+      "import": { "types": "./dist/tools.d.ts", "default": "./dist/tools.js" },
+      "require": { "types": "./dist/tools.d.cts", "default": "./dist/tools.cjs" }
+    },
+    "./drag": {
+      "import": { "types": "./dist/drag.d.ts", "default": "./dist/drag.js" },
+      "require": { "types": "./dist/drag.d.cts", "default": "./dist/drag.cjs" }
+    },
+    "./react": {
+      "import": { "types": "./dist/react.d.ts", "default": "./dist/react.js" },
+      "require": { "types": "./dist/react.d.cts", "default": "./dist/react.cjs" }
+    },
+    "./loader": "./dist/loader.global.js"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test test/*.test.ts",
+    "check:package": "npm run build && node scripts/check-package.mjs",
+    "check": "npm run typecheck && npm test && npm run check:package",
+    "prepublishOnly": "npm run check"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/jsdom": "^28.0.3",
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.0",
+    "esbuild": "^0.28.1",
+    "jsdom": "^29.1.1",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "tsdown": "^0.22.12",
+    "tsx": "^4.23.1",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "@cfworker/json-schema": "^4.1.1",
+    "json-schema-to-ts": "^3.1.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
