@@ -238,6 +238,9 @@ export class LookalikeWidgetElement extends ElementBase {
   setMuted(muted: boolean) {
     this.widget?.setMuted(muted)
   }
+  setCameraEnabled(enabled: boolean) {
+    this.widget?.setCameraEnabled(enabled)
+  }
   expand() {
     this.widget?.expand()
   }

@@ -31,6 +31,7 @@ export type CommandAction =
   | "inject-context" // silent LLM context, no user turn
   | "speak" // verbatim TTS, bypasses the LLM
   | "set-muted" // mute/unmute the visitor mic
+  | "set-camera" // turn the visitor camera on/off (video calls, embed permission required)
   | "set-overrides" // per-session overrides applied when the next session starts
   | "set-client-tools" // host-declared tool specs, sent to the agent at session start
   | "set-theme" // push theme tokens into the iframe UI
@@ -48,6 +49,7 @@ export interface CommandPayloads {
   "inject-context": { text: string }
   "speak": { text: string }
   "set-muted": { muted: boolean }
+  "set-camera": { enabled: boolean }
   "set-overrides": { overrides: SessionOverrides }
   "set-client-tools": { tools: Record<string, ClientToolWireSpec> }
   "set-theme": { tokens: ThemeTokens }

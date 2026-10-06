@@ -1,6 +1,6 @@
 {
   "name": "@lookalike/widget",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "Embed Lookalike text, voice, and video conversations with JavaScript, Web Components, or React.",
   "license": "MIT",
   "homepage": "https://lookalike.com",

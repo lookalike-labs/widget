@@ -58,7 +58,7 @@ export function createWidget(config: WidgetConfig): Widget {
   frame.title = "Lookalike conversation"
   frame.src = embedUrl
   frame.setAttribute("sandbox", IFRAME_SANDBOX)
-  if (needsMic) frame.allow = "microphone; autoplay"
+  if (needsMic) frame.allow = modes.includes("video") ? "microphone; camera; autoplay" : "microphone; autoplay"
 
   const powered = document.createElement("div")
   powered.className = "lk-powered"
@@ -224,6 +224,7 @@ export function createWidget(config: WidgetConfig): Widget {
     speak: (text: string) => transport.send("speak", { text }),
     setMode: (m: Mode) => transport.send("set-mode", { mode: m }),
     setMuted: (muted: boolean) => transport.send("set-muted", { muted }),
+    setCameraEnabled: (enabled: boolean) => transport.send("set-camera", { enabled }),
     expand: () => transport.send("expand"),
     minimize: () => transport.send("minimize"),
     open: () => transport.send("expand"),
