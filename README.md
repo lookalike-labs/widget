@@ -99,6 +99,7 @@ These options work across integrations. The default is a floating widget in the 
 | `position` | `floating` or `inline` |
 | `anchor` | `bottom-right`, `bottom-left`, `top-right`, `top-left`. Floating only |
 | `draggable` | On by default. HTML: `draggable="false"`; React: `draggable={false}`. Floating only |
+| `controls` | In-call controls: `visible`, `autohide` (fade after a few idle seconds, return on touch or pointer movement), or `hidden`. Defaults to `autohide` inline and `visible` floating |
 | `modes` | Offer a subset of the embed's allowed modes. HTML: `modes="text,video"`; React: `modes={["text", "video"]}`. Omit to offer all permitted modes |
 | Teaser text | HTML: `teaser-text`; React: `teaserText`. Defaults to the avatar's greeting |
 | Teaser delay | HTML: `teaser-delay="5"`; React: `teaserDelay={5}`. Seconds before showing the teaser; omitted means no automatic teaser |
@@ -106,7 +107,7 @@ These options work across integrations. The default is a floating widget in the 
 
 Appearance comes from your code. Dashboard appearance changes update the recommended code; copy it again to change an installed widget. Allowed modes, domains, and session permissions are enforced by the service.
 
-Removing the element or component ends the conversation and cleans up its resources. Changing `token`, `origin`, `modes`, `position`, `anchor`, or `draggable` recreates the widget and ends any active session.
+Removing the element or component ends the conversation and cleans up its resources. Changing `token`, `origin`, `modes`, `position`, `anchor`, `draggable`, or `controls` recreates the widget and ends any active session.
 
 ## Events
 

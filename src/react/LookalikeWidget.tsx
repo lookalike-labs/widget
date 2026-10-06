@@ -3,7 +3,7 @@ import { WIDGET_DOM_EVENTS, type LookalikeWidgetElement, type WidgetDOMEvent } f
 import type { WidgetConfig } from "../core/types"
 
 export interface LookalikeWidgetProps extends Pick<WidgetConfig,
-  "token" | "origin" | "modes" | "position" | "anchor" | "draggable" | "theme" | "clientTools"
+  "token" | "origin" | "modes" | "position" | "anchor" | "draggable" | "controls" | "theme" | "clientTools"
 > {
   teaserText?: string
   teaserDelay?: number
@@ -42,6 +42,7 @@ export function LookalikeWidget(props: LookalikeWidgetProps) {
     position: props.position,
     modes: props.modes?.join(","),
     draggable: props.draggable,
+    controls: props.controls,
     "teaser-text": props.teaserText,
     "teaser-delay": props.teaserDelay != null ? String(props.teaserDelay) : undefined,
     class: props.className,

@@ -8,6 +8,7 @@ export const PROTO_VERSION = "2.0.0"
 export type ChatMode = "text" | "audio" | "video"
 export type EmbedAnchor = "bottom-right" | "bottom-left" | "top-right" | "top-left"
 export type EmbedPosition = "floating" | "inline"
+export type EmbedControls = "visible" | "autohide" | "hidden"
 
 // ── Host → widget ────────────────────────────────────────────────────────────
 // Most host→widget traffic is a single envelope carrying an `action`. A few
@@ -206,11 +207,14 @@ export type WidgetToHostMessage =
 
 /**
  * Build the `/embed/<token>` iframe URL. The iframe only needs the allowed
- * modes (everything else is resolved server-side by token); omit the `modes`
- * query when all three are allowed so the URL stays clean.
+ * modes and call-control visibility (everything else is resolved server-side
+ * by token); defaults are omitted so the URL stays clean.
  */
-export function embedUrlFor(token: string, origin: string, modes: ChatMode[]): string {
-  const query = modes.length > 0 && modes.length < 3 ? `?modes=${modes.join(",")}` : ""
+export function embedUrlFor(token: string, origin: string, modes: ChatMode[], controls: EmbedControls = "visible"): string {
+  const params = []
+  if (modes.length > 0 && modes.length < 3) params.push(`modes=${modes.join(",")}`)
+  if (controls !== "visible") params.push(`controls=${controls}`)
+  const query = params.length ? `?${params.join("&")}` : ""
   return `${origin}/embed/${encodeURIComponent(token)}${query}`
 }
 

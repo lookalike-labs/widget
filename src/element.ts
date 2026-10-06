@@ -67,7 +67,7 @@ export const WIDGET_DOM_EVENTS: readonly (keyof WidgetDOMEventMap)[] = [
 
 // Changing any of these rebuilds the widget (they affect the iframe URL or the
 // chrome structure). Soft props like teaser text update in place instead.
-const STRUCTURAL_ATTRS = ["token", "origin", "modes", "position", "anchor", "draggable"]
+const STRUCTURAL_ATTRS = ["token", "origin", "modes", "position", "anchor", "draggable", "controls"]
 
 function parseModes(raw: string | null): ChatMode[] | undefined {
   if (!raw) return undefined
@@ -115,6 +115,7 @@ export class LookalikeWidgetElement extends ElementBase {
   private readConfig(): WidgetConfig {
     const position = this.getAttribute("position")
     const anchor = this.getAttribute("anchor")
+    const controls = this.getAttribute("controls")
     const teaserText = this.getAttribute("teaser-text") ?? undefined
     const teaserDelayRaw = this.getAttribute("teaser-delay")
     const teaserDelay = teaserDelayRaw != null ? Number(teaserDelayRaw) : undefined
@@ -125,6 +126,7 @@ export class LookalikeWidgetElement extends ElementBase {
       position: position === "inline" || position === "floating" ? position : undefined,
       anchor: anchor === "top-left" || anchor === "top-right" || anchor === "bottom-left" || anchor === "bottom-right" ? anchor : undefined,
       draggable: this.hasAttribute("draggable") ? this.getAttribute("draggable") !== "false" : undefined,
+      controls: controls === "visible" || controls === "autohide" || controls === "hidden" ? controls : undefined,
       teaser:
         teaserText != null || teaserDelay != null
           ? { text: teaserText, delaySeconds: Number.isFinite(teaserDelay) ? teaserDelay : undefined }
