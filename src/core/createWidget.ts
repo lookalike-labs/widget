@@ -36,9 +36,9 @@ export function createWidget(config: WidgetConfig): Widget {
   }
   const modes = cfg.modes && cfg.modes.length > 0 ? cfg.modes : ALL_MODES
   const needsMic = modes.includes("audio") || modes.includes("video")
-  const embedUrl = embedUrlFor(cfg.token, origin, modes)
   const position = cfg.position ?? "floating"
   const inline = position === "inline"
+  const embedUrl = embedUrlFor(cfg.token, origin, modes, cfg.controls ?? (inline ? "autohide" : "visible"))
   let anchor: EmbedAnchor = cfg.anchor ?? "bottom-right"
   let clientTools = { ...(cfg.clientTools ?? {}) }
 

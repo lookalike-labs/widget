@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.1.0
+
+### Added
+
+- `controls` sets whether in-call controls are `visible`, `autohide`, or `hidden`. Inline widgets default to `autohide`; floating widgets stay `visible`.
+
 ## 3.0.0
 
 First open-source release. The source lives at https://github.com/lookalike-labs/widget. Versions before 3.0.0 have no changelog entries.

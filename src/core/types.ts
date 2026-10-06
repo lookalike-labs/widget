@@ -1,7 +1,7 @@
-import type { ChatMode, ClientToolWireSpec, EmbedAnchor, EmbedPosition, SessionOverrides, ThemeTokens } from "../protocol"
+import type { ChatMode, ClientToolWireSpec, EmbedAnchor, EmbedControls, EmbedPosition, SessionOverrides, ThemeTokens } from "../protocol"
 import type { ClientToolSpec } from "../tools"
 
-export type { ChatMode, ClientToolWireSpec, EmbedAnchor, EmbedPosition, SessionOverrides, ThemeTokens }
+export type { ChatMode, ClientToolWireSpec, EmbedAnchor, EmbedControls, EmbedPosition, SessionOverrides, ThemeTokens }
 export type { ClientToolSpec }
 
 // A host-page function the avatar can invoke mid-conversation. The return
@@ -40,6 +40,8 @@ export interface WidgetConfig {
   anchor?: EmbedAnchor
   /** Allow dragging the floating widget between corners. Default true. */
   draggable?: boolean
+  /** In-call controls: always visible, fading when idle, or hidden. Default "autohide" inline, "visible" floating. */
+  controls?: EmbedControls
   /** Teaser bubble. */
   teaser?: TeaserConfig
   /** Theme tokens forwarded into the iframe UI (CSS custom properties). */
@@ -117,7 +119,7 @@ export interface Widget {
   resolveTool(id: string, result: unknown, error?: string): void
 
   /** Update theme, overrides, teaser text, and merge clientTools. Pass clientTools: undefined to clear tools.
-   * Structural options (token, origin, modes, position, anchor, target, drag) require a new widget. */
+   * Structural options (token, origin, modes, position, anchor, controls, target, drag) require a new widget. */
   update(partial: Partial<WidgetConfig>): void
   /** Tear down the widget, listeners, and DOM. */
   destroy(): void

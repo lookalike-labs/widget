@@ -82,3 +82,24 @@ test("explicit false and inline placement disable dragging", async () => {
     dom.restore()
   }
 })
+
+test("inline widgets auto-hide controls by default and explicit controls override it", async () => {
+  const dom = installDOM()
+  try {
+    const cases = [
+      [{}, null],
+      [{ position: "inline" as const }, "autohide"],
+      [{ position: "inline" as const, controls: "visible" as const }, null],
+      [{ controls: "hidden" as const }, "hidden"],
+    ] as const
+    for (const [config, expected] of cases) {
+      const widget = await resolveAndCreateWidget({ token: "test", ...config })
+      const frame = dom.document.querySelector("[data-lookalike-host]")?.shadowRoot?.querySelector("iframe")
+      assert.ok(frame)
+      assert.equal(new URL(frame.src).searchParams.get("controls"), expected)
+      widget.destroy()
+    }
+  } finally {
+    dom.restore()
+  }
+})
