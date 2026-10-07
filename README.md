@@ -286,7 +286,7 @@ widget.destroy()
 
 Conversations run on `https://lookalike.com`. Set `origin` to use another Lookalike deployment; hosting the package yourself does not host the conversation service.
 
-Voice and video require HTTPS or localhost and microphone permission. Your Permissions Policy must allow the microphone for the service origin, and the camera too if you use `setCameraEnabled`. If you use a Content Security Policy, allow the service in `frame-src`, your script source in `script-src`, and the widget's injected styles in `style-src`.
+Voice and video require HTTPS or localhost and microphone permission. Your Permissions Policy must allow the microphone for the service origin, and the camera too if the embed has the Camera permission (the visitor's camera button and `setCameraEnabled` both need it). If you use a Content Security Policy, allow the service in `frame-src`, your script source in `script-src`, and the widget's injected styles in `style-src`.
 
 Embed tokens are public. Restrict allowed domains in the dashboard. Keep account API keys and privileged operations on your server; tool argument validation does not authorize an action.
 
