@@ -53,3 +53,17 @@ test("branding rejects executable URLs", () => {
     dom.restore()
   }
 })
+
+test("only embeds that offer video delegate the camera", () => {
+  const dom = installDOM()
+  try {
+    for (const [modes, allow] of [[["audio"], "microphone; autoplay"], [["text", "video"], "microphone; camera; autoplay"]] as const) {
+      const widget = createWidget({ token: "public-token", modes: [...modes] })
+      const frame = dom.document.querySelector("[data-lookalike-host]")?.shadowRoot?.querySelector("iframe")
+      assert.equal(frame?.allow, allow)
+      widget.destroy()
+    }
+  } finally {
+    dom.restore()
+  }
+})

@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.2.0
+
+### Added
+
+- `setCameraEnabled(enabled)` turns the visitor's camera on or off during a video call so the avatar can see them. The embed needs the **Camera** permission. The iframe now allows `camera` whenever video is offered; the browser still asks the visitor.
+
 ## 3.1.0
 
 ### Added

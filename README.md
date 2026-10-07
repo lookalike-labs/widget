@@ -232,6 +232,7 @@ The Web Component exposes these methods. Get its element with Svelte's `bind:thi
 | `sendMessage(text)` | Send a user turn; starts a text conversation if needed |
 | `setMode(mode)` | Switch conversation mode |
 | `setMuted(boolean)` | Mute or unmute the visitor's microphone |
+| `setCameraEnabled(boolean)` | Turn the visitor's camera on or off in a video call so the avatar can see them. Requires the embed's **Camera** permission |
 | `expand()` / `minimize()` | Expand or minimize without ending a live session |
 | `injectContext(text)` | Add silent context to a live conversation |
 | `speak(text)` | Have the avatar say text verbatim in a live conversation |
@@ -285,7 +286,7 @@ widget.destroy()
 
 Conversations run on `https://lookalike.com`. Set `origin` to use another Lookalike deployment; hosting the package yourself does not host the conversation service.
 
-Voice and video require HTTPS or localhost and microphone permission. Your Permissions Policy must allow the microphone for the service origin. If you use a Content Security Policy, allow the service in `frame-src`, your script source in `script-src`, and the widget's injected styles in `style-src`.
+Voice and video require HTTPS or localhost and microphone permission. Your Permissions Policy must allow the microphone for the service origin, and the camera too if the embed has the Camera permission (the visitor's camera button and `setCameraEnabled` both need it). If you use a Content Security Policy, allow the service in `frame-src`, your script source in `script-src`, and the widget's injected styles in `style-src`.
 
 Embed tokens are public. Restrict allowed domains in the dashboard. Keep account API keys and privileged operations on your server; tool argument validation does not authorize an action.
 

@@ -105,6 +105,8 @@ export interface Widget {
   setMode(mode: ChatMode): void
   /** Mute/unmute the visitor's mic. */
   setMuted(muted: boolean): void
+  /** Turn the visitor's camera on or off during a video call. Requires the embed's "Camera" permission. */
+  setCameraEnabled(enabled: boolean): void
 
   /** Expand the widget (open the pill). */
   expand(): void
